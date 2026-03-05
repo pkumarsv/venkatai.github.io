@@ -1,170 +1,206 @@
-import { motion } from "framer-motion";
-import { Github, Mail, Server, Cloud, Activity, Sun, Moon, BookOpen } from "lucide-react";
 import { useState } from "react";
 
-export default function VenkatStackLanding() {
-  const [darkMode, setDarkMode] = useState(true);
-
-  const themeClasses = darkMode
-    ? "bg-gradient-to-b from-slate-950 to-slate-900 text-white"
-    : "bg-gradient-to-b from-gray-100 to-white text-slate-900";
-
-  const cardClasses = darkMode
-    ? "bg-slate-800 border-none"
-    : "bg-white border border-gray-200";
-
-  const mutedText = darkMode ? "text-slate-300" : "text-slate-600";
-
-  const Card = ({ children, className }) => (
-    <div className={className}>{children}</div>
-  );
-
-  const CardContent = ({ children, className }) => (
-    <div className={className}>{children}</div>
-  );
-
-  const Button = ({ children, className }) => (
-    <button className={className}>{children}</button>
-  );
+export default function VenkatLanding() {
+  const [dark, setDark] = useState(true);
 
   return (
-    <div className={`min-h-screen px-6 py-10 transition-colors duration-500 ${themeClasses}`}>
-      {/* Theme Toggle */}
-      <div className="flex justify-end max-w-6xl mx-auto">
-        <button
-          onClick={() => setDarkMode(!darkMode)}
-          className="flex items-center gap-2 rounded-2xl px-4 py-2 shadow-md border"
-        >
-          {darkMode ? <Sun size={18} /> : <Moon size={18} />}
-          {darkMode ? "Light Mode" : "Dark Mode"}
-        </button>
-      </div>
+    <div className={dark ? "dark bg-black text-white" : "bg-white text-black"}>
 
-      {/* Hero Section */}
-      <section className="max-w-6xl mx-auto text-center py-20">
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-5xl md:text-6xl font-bold tracking-tight"
-        >
-          VenkatStack
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className={`mt-6 text-xl max-w-2xl mx-auto ${mutedText}`}
-        >
-          DevOps | Cloud Infrastructure | Kubernetes | Observability
-        </motion.p>
-        <div className="mt-8 flex justify-center gap-4">
-          <Button className="rounded-2xl px-6 py-5 text-lg">
-            <Github className="mr-2" size={20} /> GitHub
-          </Button>
-          <Button variant="outline" className="rounded-2xl px-6 py-5 text-lg">
-            <Mail className="mr-2" size={20} /> Contact
-          </Button>
+      {/* NAVBAR */}
+      <nav className="flex justify-between p-6 max-w-6xl mx-auto">
+        <h1 className="text-xl font-bold">VenkatAI</h1>
+
+        <div className="space-x-6">
+          <a href="#projects">Projects</a>
+          <a href="#blog">Blog</a>
+          <a href="#contact">Contact</a>
+          <button
+            onClick={() => setDark(!dark)}
+            className="border px-3 py-1 rounded"
+          >
+            {dark ? "Light" : "Dark"}
+          </button>
+        </div>
+      </nav>
+
+      {/* HERO */}
+      <section className="text-center py-24 px-6">
+        <h1 className="text-5xl font-bold mb-6">
+          DevOps • Cloud • Kubernetes
+        </h1>
+
+        <p className="text-lg opacity-70 max-w-2xl mx-auto">
+          Building scalable infrastructure, automation pipelines,
+          and observability systems for high-performance computing
+          and cloud platforms.
+        </p>
+
+        <div className="mt-8 space-x-4">
+          <a
+            href="https://github.com"
+            className="border px-6 py-3 rounded"
+          >
+            GitHub
+          </a>
+
+          <a
+            href="#contact"
+            className="bg-blue-600 px-6 py-3 rounded"
+          >
+            Contact
+          </a>
         </div>
       </section>
 
-      {/* Expertise Section */}
-      <section className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 py-16">
-        <Card className={`${cardClasses} rounded-2xl shadow-lg`}>
-          <CardContent className="p-6">
-            <Cloud size={36} className="mb-4" />
-            <h3 className="text-2xl font-semibold">Cloud & Platform Engineering</h3>
-            <p className={`${mutedText} mt-4`}>
-              Designing scalable cloud-native infrastructure across AWS and Azure with automation and Infrastructure as Code.
-            </p>
-          </CardContent>
-        </Card>
+      {/* TECH STACK */}
+      <section className="max-w-6xl mx-auto py-20 px-6">
+        <h2 className="text-3xl font-bold mb-10 text-center">
+          Tech Stack
+        </h2>
 
-        <Card className={`${cardClasses} rounded-2xl shadow-lg`}>
-          <CardContent className="p-6">
-            <Server size={36} className="mb-4" />
-            <h3 className="text-2xl font-semibold">Kubernetes & DevOps</h3>
-            <p className={`${mutedText} mt-4`}>
-              Production-grade Kubernetes clusters, CI/CD pipelines, GitOps workflows, containerization, and Helm deployments.
-            </p>
-          </CardContent>
-        </Card>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
 
-        <Card className={`${cardClasses} rounded-2xl shadow-lg`}>
-          <CardContent className="p-6">
-            <Activity size={36} className="mb-4" />
-            <h3 className="text-2xl font-semibold">Observability</h3>
-            <p className={`${mutedText} mt-4`}>
-              End-to-end monitoring stacks using Kafka, OpenSearch, VictoriaMetrics, and LDMS for high-performance computing environments.
-            </p>
-          </CardContent>
-        </Card>
-      </section>
+          <div className="flex flex-col items-center gap-3 border rounded-xl p-5 hover:-translate-y-1 transition-transform">
+            <i className="devicon-kubernetes-plain colored text-5xl"></i>
+            <span className="text-sm font-semibold">Kubernetes</span>
+          </div>
 
-      {/* Projects Section */}
-      <section className="max-w-6xl mx-auto py-20">
-        <h2 className="text-4xl font-bold text-center mb-12">Featured Projects</h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          <Card className={`${cardClasses} rounded-2xl shadow-lg`}>
-            <CardContent className="p-6">
-              <h3 className="text-2xl font-semibold">HPC Observability Platform</h3>
-              <p className={`${mutedText} mt-4`}>
-                Built a scalable monitoring pipeline ingesting system logs, Redfish events, Slingshot metrics, and LDMS telemetry into Kafka and OpenSearch.
-              </p>
-            </CardContent>
-          </Card>
+          <div className="flex flex-col items-center gap-3 border rounded-xl p-5 hover:-translate-y-1 transition-transform">
+            <i className="devicon-docker-plain colored text-5xl"></i>
+            <span className="text-sm font-semibold">Docker</span>
+          </div>
 
-          <Card className={`${cardClasses} rounded-2xl shadow-lg`}>
-            <CardContent className="p-6">
-              <h3 className="text-2xl font-semibold">Cloud Migration Automation</h3>
-              <p className={`${mutedText} mt-4`}>
-                Led infrastructure migration from AWS to Azure using Terraform, Docker, Kubernetes, and CI/CD pipelines.
-              </p>
-            </CardContent>
-          </Card>
+          <div className="flex flex-col items-center gap-3 border rounded-xl p-5 hover:-translate-y-1 transition-transform">
+            <i className="devicon-amazonwebservices-original colored text-5xl"></i>
+            <span className="text-sm font-semibold">AWS</span>
+          </div>
+
+          <div className="flex flex-col items-center gap-3 border rounded-xl p-5 hover:-translate-y-1 transition-transform">
+            <i className="devicon-terraform-plain colored text-5xl"></i>
+            <span className="text-sm font-semibold">Terraform</span>
+          </div>
+
+          <div className="flex flex-col items-center gap-3 border rounded-xl p-5 hover:-translate-y-1 transition-transform">
+            <span className="text-5xl font-bold text-orange-500 leading-none">K</span>
+            <span className="text-sm font-semibold">Kafka</span>
+          </div>
+
+          <div className="flex flex-col items-center gap-3 border rounded-xl p-5 hover:-translate-y-1 transition-transform">
+            <span className="text-5xl font-bold text-blue-500 leading-none">OS</span>
+            <span className="text-sm font-semibold">OpenSearch</span>
+          </div>
+
+          <div className="flex flex-col items-center gap-3 border rounded-xl p-5 hover:-translate-y-1 transition-transform">
+            <i className="devicon-linux-plain text-5xl"></i>
+            <span className="text-sm font-semibold">Linux</span>
+          </div>
+
+          <div className="flex flex-col items-center gap-3 border rounded-xl p-5 hover:-translate-y-1 transition-transform">
+            <i className="devicon-github-original text-5xl"></i>
+            <span className="text-sm font-semibold">CI/CD</span>
+          </div>
+
         </div>
       </section>
 
-      {/* Blog Section */}
-      <section className="max-w-6xl mx-auto py-20">
-        <h2 className="text-4xl font-bold text-center mb-12">Latest Blog Posts</h2>
+      {/* PROJECTS */}
+      <section id="projects" className="max-w-6xl mx-auto py-20 px-6">
+        <h2 className="text-3xl font-bold mb-10 text-center">
+          Projects
+        </h2>
+
         <div className="grid md:grid-cols-3 gap-8">
-          <Card className={`${cardClasses} rounded-2xl shadow-lg`}>
-            <CardContent className="p-6">
-              <BookOpen size={28} className="mb-4" />
-              <h3 className="text-xl font-semibold">Designing a Scalable Observability Stack</h3>
-              <p className={`mt-3 ${mutedText}`}>
-                Deep dive into Kafka, OpenSearch, and metrics pipelines for production-grade monitoring systems.
-              </p>
-            </CardContent>
-          </Card>
 
-          <Card className={`${cardClasses} rounded-2xl shadow-lg`}>
-            <CardContent className="p-6">
-              <BookOpen size={28} className="mb-4" />
-              <h3 className="text-xl font-semibold">Kubernetes GitOps in Production</h3>
-              <p className={`mt-3 ${mutedText}`}>
-                Implementing ArgoCD-based GitOps workflows for enterprise environments.
-              </p>
-            </CardContent>
-          </Card>
+          <div className="border rounded p-6">
+            <h3 className="text-xl font-bold">HPC Monitoring</h3>
+            <p className="opacity-70 mt-2">
+              Observability pipeline using Kafka, OpenSearch,
+              and LDMS for HPC clusters.
+            </p>
+          </div>
 
-          <Card className={`${cardClasses} rounded-2xl shadow-lg`}>
-            <CardContent className="p-6">
-              <BookOpen size={28} className="mb-4" />
-              <h3 className="text-xl font-semibold">HPC Monitoring Architecture</h3>
-              <p className={`mt-3 ${mutedText}`}>
-                Integrating LDMS and telemetry pipelines for high-performance computing clusters.
-              </p>
-            </CardContent>
-          </Card>
+          <div className="border rounded p-6">
+            <h3 className="text-xl font-bold">Kubernetes GitOps</h3>
+            <p className="opacity-70 mt-2">
+              GitOps infrastructure deployment using Helm,
+              ArgoCD, and Terraform.
+            </p>
+          </div>
+
+          <div className="border rounded p-6">
+            <h3 className="text-xl font-bold">Cloud Automation</h3>
+            <p className="opacity-70 mt-2">
+              Infrastructure automation across AWS and Azure
+              environments.
+            </p>
+          </div>
+
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className={`text-center py-10 border-t ${darkMode ? "border-slate-800 text-slate-400" : "border-gray-200 text-slate-600"}`}>
-        <p>© {new Date().getFullYear()} VenkatStack.dev | Built with DevOps mindset</p>
+      {/* BLOG */}
+      <section id="blog" className="max-w-6xl mx-auto py-20 px-6">
+        <h2 className="text-3xl font-bold mb-10 text-center">
+          Blog
+        </h2>
+
+        <div className="grid md:grid-cols-3 gap-8">
+
+          <div className="border p-6 rounded">
+            <h3 className="font-bold">
+              Kubernetes Monitoring Stack
+            </h3>
+            <p className="opacity-70 mt-2">
+              Building a scalable observability stack
+              for production clusters.
+            </p>
+          </div>
+
+          <div className="border p-6 rounded">
+            <h3 className="font-bold">
+              Kafka for Infrastructure Logs
+            </h3>
+            <p className="opacity-70 mt-2">
+              How to stream system logs into a
+              real-time analytics pipeline.
+            </p>
+          </div>
+
+          <div className="border p-6 rounded">
+            <h3 className="font-bold">
+              GitOps Best Practices
+            </h3>
+            <p className="opacity-70 mt-2">
+              Managing Kubernetes deployments
+              with Git workflows.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+      {/* CONTACT */}
+      <section id="contact" className="text-center py-20 px-6">
+        <h2 className="text-3xl font-bold mb-6">Contact</h2>
+
+        <p className="opacity-70 mb-6">
+          Interested in DevOps, cloud automation,
+          or infrastructure engineering collaborations.
+        </p>
+
+        <a
+          href="mailto:hello@venkatai.dev"
+          className="border px-6 py-3 rounded"
+        >
+          hello@venkatai.dev
+        </a>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="text-center py-10 opacity-50">
+        © 2026 VenkatAI
       </footer>
+
     </div>
   );
 }
