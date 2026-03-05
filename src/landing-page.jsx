@@ -1,6 +1,4 @@
 import { motion } from "framer-motion";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Github, Mail, Server, Cloud, Activity, Sun, Moon, BookOpen } from "lucide-react";
 import { useState } from "react";
 
@@ -16,6 +14,18 @@ export default function VenkatStackLanding() {
     : "bg-white border border-gray-200";
 
   const mutedText = darkMode ? "text-slate-300" : "text-slate-600";
+
+  const Card = ({ children, className }) => (
+    <div className={className}>{children}</div>
+  );
+
+  const CardContent = ({ children, className }) => (
+    <div className={className}>{children}</div>
+  );
+
+  const Button = ({ children, className }) => (
+    <button className={className}>{children}</button>
+  );
 
   return (
     <div className={`min-h-screen px-6 py-10 transition-colors duration-500 ${themeClasses}`}>
